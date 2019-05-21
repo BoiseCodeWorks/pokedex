@@ -11,13 +11,21 @@
 </head>
 
 <body>
-    <div id="active-pokemon">
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul id="api-pokemon">
+                    <!-- draw list of all api pokemon -->
+                </ul>
+            </div>
+            <div class="col" id="active-pokemon">
+                <!-- Draw Active Pokemon here -->
+            </div>
+            <div class="col" id="my-pokemon">
+                <!-- draw list of my pokemon -->
+            </div>
+        </div>
     </div>
-    <ul id="api-pokemon">
-
-    </ul>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src="app/main.js" type="module"></script>

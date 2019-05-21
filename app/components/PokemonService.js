@@ -6,7 +6,7 @@ let _pokeApi = axios.create({
 })
 
 let _sandbox = axios.create({
-    baseURL: 'https://bcw-sandbox.herokuapp.com/api/MarkTest/pokemon'
+    baseURL: 'https://bcw-sandbox.herokuapp.com/api/Mark/pokemon'
 })
 
 
@@ -60,18 +60,40 @@ export default class PokemonService {
             })
     }
 
-    addPokemon() {
-        _sandbox.post('', _state.activePokemon) //create pokemon in database
+    getMyPokemon() {
+        _sandbox.get()
             .then(response => {
-                console.log(response.data)
+                let pokemon = response.data.data.map(p => new Pokemon(p))
+                _setState('myPokemon', pokemon)
             })
             .catch(err => {
                 console.error(err)
             })
     }
 
-    deleteFromPokedex(id) {
+
+    addPokemon() {
+        _sandbox.post('', _state.activePokemon) //create pokemon in database
+            .then(response => {
+                this.getMyPokemon()
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }
+
+    removePokemon(id) {
         _sandbox.delete(id)
+            .then(response => {
+                this.getMyPokemon()
+            })
     }
 
 }
+
+
+
+
+
+
+
